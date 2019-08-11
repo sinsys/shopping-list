@@ -32,6 +32,11 @@ $(function(){
 		item.closest('li').remove();
 	}
 
+	// Toggle if item is checked or unchecked
+	function toggleItemState(item){
+		item.closest('li').find('.shopping-item').toggleClass('shopping-item__checked');
+	}
+
 	// Event listener to add an item
 	$('#js-shopping-list-form').submit(function(e){
 		e.preventDefault();
@@ -39,8 +44,12 @@ $(function(){
 	});
 
 	// Event listener using event delegation to remove an item
-	$('.shopping-list').on('click', 'li .shopping-item-delete', function(e){
+	$('.shopping-list').on('click', '.shopping-item-delete', function(e){
 		removeItem($(this));
 	});
 
+	// Event listener using event delegation to apply/remove a class when user checks or unchecks item
+	$('.shopping-list').on('click', '.shopping-item-toggle', function(e){
+		toggleItemState($(this));
+	});
 });
