@@ -26,10 +26,21 @@ $(function(){
 		inputField.val('');		
 	}
 
+	// button to remove item - .shopping-item-delete
+	// Remove an item
+	function removeItem(item){
+		item.closest('li').remove();
+	}
+
 	// Event listener to add an item
 	$('#js-shopping-list-form').submit(function(e){
 		e.preventDefault();
 		addItem($('#shopping-list-entry'), $('.shopping-list'));
+	});
+
+	// Event listener using event delegation to remove an item
+	$('.shopping-list').on('click', 'li .shopping-item-delete', function(e){
+		removeItem($(this));
 	});
 
 });
